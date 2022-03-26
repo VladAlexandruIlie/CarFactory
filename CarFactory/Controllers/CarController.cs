@@ -42,13 +42,13 @@ namespace CarFactory.Controllers
             };
         }
 
-        private static IEnumerable<CarSpecification> TransformToDomainObjects(BuildCarInputModel carsSpecs)
+        public static IEnumerable<CarSpecification> TransformToDomainObjects(BuildCarInputModel carsSpecs)
         {
             //Check and transform specifications to domain objects
             var wantedCars = new List<CarSpecification>();
             foreach (var spec in carsSpecs.Cars)
             {
-                for(var i = 0; i <= spec.Amount; i++)
+                for(var i = 0; i < spec.Amount; i++)
                 {
                     if(spec.Specification.NumberOfDoors % 2 == 0)
                     {
@@ -71,7 +71,7 @@ namespace CarFactory.Controllers
                             throw new ArgumentException(string.Format("Unknown paint type %", spec.Specification.Paint.PaintType));
                     }
                     var dashboardSpeakers = spec.Specification.FrontWindowSpeakers.Select(s => new CarSpecification.SpeakerSpecification { IsSubwoofer = s.IsSubwoofer });
-                    var doorSpeakers = new CarSpecification.SpeakerSpecification[0]; //TODO: Let people install door speakers
+                    var doorSpeakers = spec.Specification.DoorSpeakers.Select(s => new CarSpecification.SpeakerSpecification { IsSubwoofer = s.IsSubwoofer });
                     var wantedCar = new CarSpecification(paint, spec.Specification.Manufacturer, spec.Specification.NumberOfDoors, doorSpeakers, dashboardSpeakers);
                     wantedCars.Add(wantedCar);
                 }
@@ -113,13 +113,14 @@ namespace CarFactory.Controllers
             public int NumberOfDoors { get; set; }
             public CarPaintSpecificationInputModel Paint { get; set; }
             public Manufacturer Manufacturer { get; set; }
-            public SpeakerSpecificationInputModel[] FrontWindowSpeakers { get; set; }
+            public SpeakerSpecificationInputModel[] FrontWindowSpeakers { get; set; } 
+            public SpeakerSpecificationInputModel[] DoorSpeakers { get; set; }
         }
 
         public class SpeakerSpecificationInputModel
         {
             public bool IsSubwoofer { get; set; }
-        }
+        }  
 
         public class BuildCarOutputModel{
             public long RunTime { get; set; }

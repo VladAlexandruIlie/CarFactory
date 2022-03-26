@@ -15,13 +15,13 @@ namespace CarFactory_Factory
         public readonly IEnumerable<SpeakerSpecification> DoorSpeakers;
         public readonly IEnumerable<SpeakerSpecification> FrontWindowSpeakers;
 
-        public CarSpecification(PaintJob paint, Manufacturer manufacturer, int numberOfDoors, IEnumerable<SpeakerSpecification> doorSpeakers, IEnumerable<SpeakerSpecification> dashboardSpeakers)
+        public CarSpecification(PaintJob paint, Manufacturer manufacturer, int numberOfDoors, IEnumerable<SpeakerSpecification> doorSpeakers, IEnumerable<SpeakerSpecification> frontWindowSpeakers)
         {
             PaintJob = paint;
             Manufacturer = manufacturer;
             NumberOfDoors = numberOfDoors;
             DoorSpeakers = doorSpeakers;
-            FrontWindowSpeakers = dashboardSpeakers;
+            FrontWindowSpeakers = frontWindowSpeakers;
         }
 
         public class SpeakerSpecification
