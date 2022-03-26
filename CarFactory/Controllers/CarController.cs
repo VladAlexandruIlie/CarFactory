@@ -48,7 +48,7 @@ namespace CarFactory.Controllers
             var wantedCars = new List<CarSpecification>();
             foreach (var spec in carsSpecs.Cars)
             {
-                for(var i = 1; i <= spec.Amount; i++)
+                for(var i = 0; i <= spec.Amount; i++)
                 {
                     if(spec.Specification.NumberOfDoors % 2 == 0)
                     {
@@ -56,19 +56,19 @@ namespace CarFactory.Controllers
                     }
                     PaintJob? paint = null;
                     var baseColor = Color.FromName(spec.Specification.Paint.BaseColor);
-                    switch (spec.Specification.Paint.Type)
+                    switch (spec.Specification.Paint.PaintType)
                     {
-                        case "single":
+                        case PaintType.Single:
                             paint = new SingleColorPaintJob(baseColor);
                             break;
-                        case "strie":
+                        case PaintType.Stripe:
                             paint = new StripedPaintJob(baseColor, Color.FromName(spec.Specification.Paint.StripeColor));
                             break;
-                        case "dot":
+                        case PaintType.Dot:
                             paint = new DottedPaintJob(baseColor, Color.FromName(spec.Specification.Paint.DotColor));
                             break;
                         default:
-                            throw new ArgumentException(string.Format("Unknown paint type %", spec.Specification.Paint.Type));
+                            throw new ArgumentException(string.Format("Unknown paint type %", spec.Specification.Paint.PaintType));
                     }
                     var dashboardSpeakers = spec.Specification.FrontWindowSpeakers.Select(s => new CarSpecification.SpeakerSpecification { IsSubwoofer = s.IsSubwoofer });
                     var doorSpeakers = new CarSpecification.SpeakerSpecification[0]; //TODO: Let people install door speakers
@@ -92,9 +92,17 @@ namespace CarFactory.Controllers
             public CarSpecificationInputModel Specification { get; set; }
         }
 
+        public enum PaintType
+        {
+            Single,
+            Stripe, 
+            Dot
+        }
+
         public class CarPaintSpecificationInputModel
         {
-            public string Type { get; set; }
+            public string type { get; set; }
+            public PaintType PaintType { get; set; }
             public string BaseColor { get; set; }
             public string? StripeColor { get; set; }
             public string? DotColor { get; set; }
