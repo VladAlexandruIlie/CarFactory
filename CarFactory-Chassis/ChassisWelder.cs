@@ -29,10 +29,12 @@ namespace CarFactory_Chasis
                 _secondPart = secondPart;
                 return true;
             }
-            for(var i = 0; i != numberOfDoors; i++)
-            {
-                //TODO: Weld door
-            }
+            
+            if (numberOfDoors.Equals("3")) { 
+                _secondPart = new ChassisCabin(0);
+            } else if (numberOfDoors.Equals("5")) {
+                _secondPart = new ChassisCabin(1);
+            } 
             return false;
         }
 

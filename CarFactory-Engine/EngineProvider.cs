@@ -29,7 +29,6 @@ namespace CarFactory_Engine
             _cache = cache;
         }
 
-
         public Engine GetEngine(Manufacturer manufacturer)
         {
             var specification = _getEngineSpecification.GetForManufacturer(manufacturer);
@@ -66,7 +65,6 @@ namespace CarFactory_Engine
             return engineBlock;
         }
 
-
         private int GetSteel(int amount)
         {
             if(amount > SteelInventory)
@@ -82,17 +80,11 @@ namespace CarFactory_Engine
 
         private void InstallFuelInjectors(Engine engine, Propulsion propulsionType)
         {
-            //Do work
-            SlowWorker.FakeWorkingForMillis(25 * engine.EngineBlock.CylinderCount);
-
             engine.PropulsionType = propulsionType;
         }
 
         private void InstallPistons(Engine engine, int pistons)
         {
-            //Do work
-            SlowWorker.FakeWorkingForMillis(25 * pistons);
-
             engine.PistonsCount = pistons;
         }
 
@@ -103,8 +95,6 @@ namespace CarFactory_Engine
 
             if(engine.PropulsionType.Value == Propulsion.Gasoline)
             {
-                //Do work 
-                SlowWorker.FakeWorkingForMillis(engine.EngineBlock.CylinderCount * 15);
                 engine.HasSparkPlugs = true;
             }   
         }

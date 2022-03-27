@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using CarFactory_Assembly;
 using CarFactory_Chasis;
 using CarFactory_Engine;
@@ -20,7 +16,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace CarFactory
@@ -44,16 +39,15 @@ namespace CarFactory
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v2", new OpenApiInfo
                 {
                     Title = "Car markers API",
                     Version = "v1",
-                    Description = ""
+                    Description = "Api for building cars"
                 });
             });
 
             services.AddSingleton<IMemoryCache, MemoryCache>();
-
             services.AddTransient<ICarAssembler, CarAssembler>();
             services.AddScoped<IChassisProvider, ChassisProvider>();
             services.AddScoped<IEngineProvider, EngineProvider>();
@@ -86,7 +80,7 @@ namespace CarFactory
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zomato API V1");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "CarFactory API V2");
 
                 // To serve SwaggerUI at application's root page, set the RoutePrefix property to an empty string.
                 c.RoutePrefix = string.Empty;

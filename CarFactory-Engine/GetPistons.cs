@@ -11,7 +11,6 @@ namespace CarFactory_Engine
     {
         public int Get(int amount)
         {
-            SlowWorker.FakeWorkingForMillis(amount * 50);
             return amount;
         }
     }

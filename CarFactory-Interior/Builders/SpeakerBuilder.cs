@@ -11,7 +11,7 @@ namespace CarFactory_Interior.Builders
     {
         public List<Speaker> BuildFrontWindowSpeakers(IEnumerable<SpeakerSpecification> specification)
         {
-           // if (specification.ToArray().Length > 2) throw new ArgumentException("More than 2 front window speakers aren't supported");
+            if (specification.ToArray().Length > 2) throw new ArgumentException("More than 2 front window speakers aren't supported");
             return specification.Select(spec =>
                 new Speaker { IsSubwoofer = spec.IsSubwoofer }
             )
@@ -20,7 +20,7 @@ namespace CarFactory_Interior.Builders
         
         public List<Speaker> BuildDoorSpeakers(IEnumerable<SpeakerSpecification> specification)
         {
-        //    if (specification.ToArray().Length > 2) throw new ArgumentException("More than 2 door speakers aren't supported");
+            if (specification.ToArray().Length > 2) throw new ArgumentException("More than 2 door speakers aren't supported");
             return specification.Select(spec =>
                 new Speaker { IsSubwoofer = spec.IsSubwoofer }
             )

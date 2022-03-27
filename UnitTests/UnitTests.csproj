@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataSet1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="DataSet1.xsc" />
+    <None Remove="DataSet1.xsd" />
+    <None Remove="DataSet1.xss" />
+    <None Remove="inputData.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.16.0" />
@@ -20,6 +31,10 @@
     <ProjectReference Include="..\CarFactory-Engine\CarFactory-Engine.csproj" />
     <ProjectReference Include="..\CarFactory-Paint\CarFactory-Paint.csproj" />
     <ProjectReference Include="..\CarFactory\CarFactory.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="inputData.txt" />
   </ItemGroup>
 
 </Project>

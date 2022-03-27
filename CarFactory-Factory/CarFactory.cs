@@ -43,8 +43,8 @@ namespace CarFactory_Factory
                 var interior = _interiorProvider.GetInterior(spec);
                 var wheels = _wheelProvider.GetWheels();
                 var car = _carAssembler.AssembleCar(chassis, engine, interior, wheels);
-                var paintedCar = _painter.PaintCar(car, spec.PaintJob);
-                cars.Add(paintedCar);
+                var wantedCar = _painter.PaintCar(car, spec.PaintJob);
+                cars.Add(wantedCar);
             }
             return cars;
         }

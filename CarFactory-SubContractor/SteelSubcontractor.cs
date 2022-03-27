@@ -10,12 +10,10 @@ namespace CarFactory_SubContractor
         public List<SteelDelivery> OrderSteel(int amount)
         {
             var delivery = new List<SteelDelivery>();
-            do
-            {
+            do {
                 delivery.Add(new SteelDelivery());
-                SlowWorker.FakeWorkingForMillis(100);
-            }
-            while (delivery.Select(d => d.Amount).Sum(a => a) < amount);
+            } while (delivery.Select(d => d.Amount).Sum(a => a) < amount);
+
             return delivery;
         }
     }
