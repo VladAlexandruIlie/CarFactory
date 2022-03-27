@@ -32,6 +32,7 @@ namespace CarFactory_Assembly
 
         private long GoBig(long m, long n)
         {
+            switch (m)
             {
                 case 0 :
                     return n + 1;
